@@ -9,6 +9,7 @@ interface Paper {
 }
 
 const SearchPapers: React.FC = () => {
+  const [term, setTerm] = useState('');
   const [papers, setPapers] = useState<Paper[]>([]);
   
   const searchPapers = async (term: string) => {
