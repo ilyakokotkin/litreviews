@@ -11,7 +11,7 @@ interface Paper {
 const SearchPapers: React.FC = () => {
   const [term, setTerm] = useState('');
   const [papers, setPapers] = useState<Paper[]>([]);
-  
+
   const searchPapers = async (term: string) => {
     const response = await axios.get(`http://localhost:4000/search?term=${term}`);
     setPapers(response.data.papers);
@@ -19,11 +19,20 @@ const SearchPapers: React.FC = () => {
 
   return (
     <div>
-      <input type="text" placeholder="Search papers..." onChange={(e) => searchPapers(e.target.value)} />
+      <input
+        type="text"
+        placeholder="Search papers..."
+        value={term}
+        onChange={(e) => setTerm(e.target.value)}
+      />
+      <button onClick={() => searchPapers(term)}>Search</button>
       <ul>
         {papers.map((paper) => (
           <li key={paper.id}>
-            <a href={paper.link} target="_blank" rel="noopener noreferrer">{paper.title}</a> by {paper.authors.join(', ')}
+            <a href={paper.link} target="_blank" rel="noopener noreferrer">
+              {paper.title}
+            </a>{' '}
+            by {paper.authors.join(', ')}
           </li>
         ))}
       </ul>
@@ -32,4 +41,3 @@ const SearchPapers: React.FC = () => {
 };
 
 export default SearchPapers;
-

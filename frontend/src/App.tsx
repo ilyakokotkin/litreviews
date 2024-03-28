@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>Paper Review Platform</p>
+        <p>Welcome to LitReviews</p>
         <SearchPapers />
       </header>
     </div>
